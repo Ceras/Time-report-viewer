@@ -9,7 +9,7 @@
 .classpath
 .settings
 stacktrace.log
-/*.zip
+*.zip
 /plugin.xml
 /*.log
 /*DB.*
@@ -26,4 +26,4 @@ ROOT.war
 /web-app/WEB-INF/*
 errorStatus.txt
 errorReqs.txt
-backend-config.groovy
+time-report-viewer-config.groovy
