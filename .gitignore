@@ -27,3 +27,4 @@ ROOT.war
 errorStatus.txt
 errorReqs.txt
 time-report-viewer-config.groovy
+node_modules/
