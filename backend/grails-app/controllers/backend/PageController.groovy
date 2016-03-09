@@ -6,7 +6,7 @@ class PageController {
     def importDataService
 
     def fetchFile(String serverFileName){
-        File file = new File("temp/$serverFileName")
+        File file = new File(System.getProperty('java.io.tmpdir') + "/$serverFileName")
         String fileName = serverFileName.split('_')[1]
 
         response.setContentType("application/octet-stream")

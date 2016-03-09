@@ -84,8 +84,12 @@ class ExportController {
 
         render localFile.name
     }
+    @Secured(['IS_AUTHENTICATED_FULLY'])
     def profitabilityBasis() {
-        DateTime startOfFiscalYear = new DateTime().withTimeAtStartOfDay().withDayOfMonth(1).withMonthOfYear(5)
+        DateTime today = new DateTime()
+        DateTime startOfFiscalYear = today.withTimeAtStartOfDay().withDayOfMonth(1).withMonthOfYear(5)
+
+        startOfFiscalYear = today.monthOfYear >= 5 ?: startOfFiscalYear.minusYears(1)
 
         Map offerAreaMapping = [
                 'D - Produktutveckling': ['Prod'],
@@ -280,7 +284,7 @@ class ExportController {
         sheet.getRow(26).getCell(2).setCellValue(totalParentalLeave)
 
 
-        File file = new File('temp/' + System.currentTimeMillis() + '_input till lonsamhetsmodell.xlsx')
+        File file = new File(System.getProperty('java.io.tmpdir') + "/${System.currentTimeMillis()}" + '_input till lonsamhetsmodell.xlsx')
         excelFile.write(file.newOutputStream())
 
         render file.name
